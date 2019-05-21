@@ -13,6 +13,7 @@ class App extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.searchMovies = this.searchMovies.bind(this);
     this.callApi = this.callApi.bind(this);
+    this.displayError = this.displayError.bind(this);
   }
   handleChange(e) {
     this.setState({ movie: e.target.value });
@@ -20,6 +21,11 @@ class App extends React.Component {
 
   searchMovies() {
     this.callApi();
+  }
+  displayError() {
+    if (this.state.error) {
+      return <span>Something Went Wrong</span>;
+    }
   }
 
   callApi() {
@@ -66,6 +72,7 @@ class App extends React.Component {
           <input type="button" value="Search" onClick={this.searchMovies} />
         </div>
         {displayMovie}
+        {this.displayError()}
       </div>
     );
   }
